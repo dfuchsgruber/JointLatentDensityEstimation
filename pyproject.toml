@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jlde"
+version = "0.1.0"
+description = "Joint latent density estimation for uncertainty estimation on heterophilic graphs."
+readme = "README.md"
+authors = [{ name = "Dominik Fuchsgruber", email = "d.fuchsgruber@tum.de" }]
+requires-python = ">=3.11"
+license = { text = "MIT" }
+
+dependencies = ["torch", "numpy"]
+
+[project.optional-dependencies]
+dev = ["pytest", "ruff", "pre-commit"]
+
+
+[tool.isort]
+profile = "black"
+known_third_party = ["wandb"]
+
+[tool.black]
+line-length = 90
+target-version = ["py311"]
+
+[tool.ruff.lint]
+ignore = ['F722', 'F821']
+
+[tool.ruff.lint.per-file-ignores]
+# import order in main files needs to include `setup` call
+'main.py' = ['E402']
+'generate_data.py' = ['E402']
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+packages = ["jlde"]
